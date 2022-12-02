@@ -10,7 +10,7 @@ const findProducts = debounce(async term => {
   try {
     if (term === 0) return (productArray.value = [])
     isLoading.value = true
-    const findTerms = await await (await fetch(`https://dummyjson.com/products/search?q=${term}&limit=10`)).json()
+    const findTerms = await (await fetch(`https://dummyjson.com/products/search?q=${term}&limit=10`)).json()
     productArray.value = findTerms.products
     console.table(findTerms)
   } catch (error) {
@@ -29,7 +29,7 @@ watch(searchTerm, newTerm => findProducts(newTerm))
     <input type="text" class="p-2 border-2 border-gray-dark" v-model="searchTerm" placeholder="Start typing..." />
     <ul class="list-disc" v-if="!isLoading">
       <li v-for="product in productArray" :key="product.id">
-        {{ product.title }} ${{ product.price }}
+        {{ product.title }}
         <img
           :src="product.thumbnail"
           class="bg-white border-solid border-2 border-sky-500 rounded max-w-xs object-cover"

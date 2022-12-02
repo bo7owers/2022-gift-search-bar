@@ -8,9 +8,8 @@ const searchTerm = ref(' ')
 
 const findProducts = debounce(async term => {
   try {
-    if (term === 0) return (productArray.value = [])
     isLoading.value = true
-    const findTerms = await (await fetch(`https://dummyjson.com/products/search?q=${term}&limit=10`)).json()
+    const findTerms = await (await fetch(`https://dummyjson.com/products/search?q=${term}`)).json()
     productArray.value = findTerms.products
   } catch (error) {
     console.error(error)

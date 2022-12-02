@@ -12,7 +12,6 @@ const findProducts = debounce(async term => {
     isLoading.value = true
     const findTerms = await (await fetch(`https://dummyjson.com/products/search?q=${term}&limit=10`)).json()
     productArray.value = findTerms.products
-    console.table(findTerms)
   } catch (error) {
     console.error(error)
   } finally {
